@@ -1,0 +1,24 @@
+{
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": "dist",
+  "env": {
+    "NODE_ENV": "production",
+    "JWT_SECRET": "@generated-jwt-secret",
+    "DATABASE_URL": "@generated-database-url",
+    "BUILT_IN_FORGE_API_URL": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+    "BUILT_IN_FORGE_API_KEY": "@generated-api-key"
+  },
+  "functions": {
+    "dist/index.js": {
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/index.js"
+    }
+  ]
+}
